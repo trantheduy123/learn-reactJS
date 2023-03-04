@@ -1,15 +1,22 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./components/Nav";
+import { useState } from "react";
 
 function App() {
-  let name = "Duy dep trai";
   let obj = { name: "tran the duy", phone: "113" };
-
+  let [name, setName] = useState("Duyhack");
+  const [address, setAdress] = useState("");
   const handlerEventClick = (event) => {
-    console.log(">>> click me", event.target.value);
+    setName(address);
   };
 
+  const handlerOnchangeInput = (e) => {
+    console.log(address);
+    setAdress(e.target.value);
+  };
+
+  //re-render
   return (
     <div className='App'>
       <Nav />
@@ -20,8 +27,8 @@ function App() {
         </h1>
         <input
           type='text'
-          value='duy'
-          onClick={(event) => handlerEventClick(event)}
+          value={address}
+          onChange={(e) => handlerOnchangeInput(e)}
         />
         <button type='button' onClick={(event) => handlerEventClick(event)}>
           Click me
