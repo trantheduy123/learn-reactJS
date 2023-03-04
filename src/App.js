@@ -7,8 +7,19 @@ function App() {
   let obj = { name: "tran the duy", phone: "113" };
   let [name, setName] = useState("Duyhack");
   const [address, setAdress] = useState("");
+  const [todos, setTodos] = useState([
+    { id: "todo1", title: "watching hoi dan IT channel" },
+    { id: "todo2", title: "Doing homework" },
+  ]);
+
   const handlerEventClick = (event) => {
-    setName(address);
+    if (!address) {
+      alert("empty in put");
+      return;
+    }
+    let newTodo = { id: todos.id, title: address };
+    setTodos([...todos, newTodo]);
+    setAdress("");
   };
 
   const handlerOnchangeInput = (e) => {
@@ -25,6 +36,16 @@ function App() {
         <h1>
           Hello world with react {name} {obj.phone}
         </h1>
+        <div className='todos-container'>
+          {todos.map((todo) => {
+            return (
+              <li className='todo-list' key={todo.id}>
+                {" "}
+                {todo.title}
+              </li>
+            );
+          })}
+        </div>
         <input
           type='text'
           value={address}
